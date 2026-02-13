@@ -1,0 +1,1037 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    --primary-color: #333240;
+    --bg-color: #FAFAFA;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --shadow-soft: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+    --max-width: 1280px;
+    --font-poppins: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-poppins);
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    line-height: 1.6;
+}
+
+/* Glassmorphism Utilities */
+.glass-nav {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Navbar */
+.nav-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+    /* Adjust based on actual logo size */
+}
+
+/* Search Bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    width: 300px;
+}
+
+.search-bar:focus-within {
+    background: #fff;
+    border-color: rgba(51, 50, 64, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.search-bar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    margin-left: 0.5rem;
+    width: 100%;
+    font-family: var(--font-poppins);
+    color: var(--primary-color);
+}
+
+/* Nav Links */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #000;
+    font-weight: 600;
+}
+
+/* Auth Buttons */
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-login,
+.btn-signup {
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-family: var(--font-poppins);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-login {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-login:hover {
+    background: rgba(51, 50, 64, 0.05);
+}
+
+.btn-signup {
+    background: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    color: #fff;
+}
+
+.btn-signup:hover {
+    background: #444;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(51, 50, 64, 0.2);
+}
+
+/* Main Content */
+main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Hero Section */
+.hero-section {
+    margin-bottom: 4rem;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+}
+
+.hero-banner {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Categories Section */
+.categories-section {
+    padding: 2rem 0;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+}
+
+.category-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.category-card {
+    background: #FFFFFF;
+    border-radius: 24px;
+    width: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.05);
+}
+
+.category-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(31, 38, 135, 0.12);
+}
+
+.category-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.category-item h3 {
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+
+/* Trending Section */
+.trending-section {
+    padding: 4rem 0;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.section-subtitle {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.trending-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.collection-card {
+    background: transparent;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease;
+    /* Optional: if you want a card background, uncomment below, but clean design often relies on image */
+    /* background: #fff; */
+    /* box-shadow: var(--shadow-soft); */
+}
+
+.collection-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-image {
+    width: 100%;
+    height: 250px;
+    /* Fixed height for consistency */
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: var(--shadow-soft);
+}
+
+.card-content {
+    padding: 1rem 0.5rem;
+}
+
+.card-content h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--primary-color);
+}
+
+.card-content p {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/* Meditation Section */
+.meditation-section {
+    padding: 2rem 0 4rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.see-all {
+    color: #ff6b6b;
+    /* Adjust color as needed */
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.meditation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+}
+
+.meditation-card {
+    background: #fff;
+    border-radius: 20px;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    align-items: center;
+    padding: 1rem;
+    gap: 1.5rem;
+}
+
+.meditation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.meditation-image {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.meditation-content {
+    flex: 1;
+}
+
+.meditation-content h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.meditation-desc {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 1rem;
+}
+
+.meditation-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.85rem;
+}
+
+.meta-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: #888;
+    background: #f5f5f5;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+}
+
+.meta-time {
+    color: #00C853;
+    font-weight: 600;
+}
+
+/* Miracles Section */
+.miracles-section {
+    padding: 2rem 0 4rem;
+}
+
+.miracles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+}
+
+.miracle-card {
+    border-radius: 20px;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.miracle-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.miracle-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.miracle-quote {
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.4;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.miracle-author {
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    align-self: flex-start;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+    .nav-links,
+    .search-bar,
+    .auth-buttons {
+        display: none;
+        /* Mobile menu implementation usually requires JS, keeping simple for now */
+    }
+
+    .nav-container {
+        justify-content: center;
+    }
+
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .trending-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .meditation-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .meditation-card {
+        flex-direction: row;
+        /* Keep row unless very small */
+    }
+
+    .miracles-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .meditation-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .meditation-image {
+        width: 100%;
+        height: 200px;
+    }
+
+    .meditation-meta {
+        justify-content: center;
+    }
+}
+
+/* Footer */
+.site-footer {
+    background-color: #fff;
+    color: #000;
+    padding: 4rem 0;
+    margin-top: 4rem;
+    border-top: 1px solid #eee;
+}
+
+.footer-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.footer-brand h1 {
+    font-size: 8rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    color: #333240;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+
+.footer-subscribe {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+}
+
+.footer-subscribe p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    font-weight: 400;
+    color: #333240;
+}
+
+.subscribe-form {
+    display: flex;
+    border: 1px solid #000;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.subscribe-form input {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+}
+
+.subscribe-form button {
+    background: #ffc0eb;
+    border: none;
+    padding: 0 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid #000;
+    transition: background 0.3s;
+}
+
+.subscribe-form button:hover {
+    background: #ff90e8;
+}
+
+.footer-links-group {
+    display: flex;
+    gap: 4rem;
+}
+
+.link-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.link-column a {
+    text-decoration: none;
+    color: #000;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.link-column a:hover {
+    opacity: 1;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2rem;
+}
+
+.footer-logo-small {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-icons a svg {
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.social-icons a:hover svg {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .footer-brand h1 {
+        font-size: 4rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: flex-start;
+    }
+}
+
+/* Music Player Modal - Spotify Style Split Layout */
+.music-player-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+    z-index: 10000;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.music-player-modal.active {
+    display: block;
+    opacity: 1;
+}
+
+.player-close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    z-index: 10001;
+}
+
+.player-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.player-split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+    gap: 0;
+}
+
+/* Left Section - Player */
+.player-section {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 4rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.player-title {
+    color: #999;
+    font-size: 0.9rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.player-share {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.player-share:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.player-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+}
+
+.album-art {
+    width: 320px;
+    height: 320px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
+}
+
+.album-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.song-info {
+    text-align: center;
+    color: white;
+    width: 100%;
+    max-width: 400px;
+}
+
+.song-info h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.song-info p {
+    font-size: 1.1rem;
+    color: #999;
+    margin-bottom: 1.2rem;
+}
+
+.lyrics-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 0.6rem 1.5rem;
+    border-radius: 24px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: all 0.3s ease;
+    font-family: var(--font-poppins);
+}
+
+.lyrics-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.progress-section {
+    width: 100%;
+    max-width: 400px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 0.8rem;
+    cursor: pointer;
+}
+
+.progress-fill {
+    height: 100%;
+    background: white;
+    width: 20%;
+    transition: width 0.1s linear;
+    border-radius: 3px;
+}
+
+.time-labels {
+    display: flex;
+    justify-content: space-between;
+    color: #999;
+    font-size: 0.85rem;
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.control-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.7;
+}
+
+.control-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.play-btn {
+    background: white;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    opacity: 1;
+}
+
+
+.play-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
+}
+
+.shuffle-btn,
+.favorite-btn {
+    opacity: 0.5;
+}
+
+/* Right Section - More Miracles */
+.miracles-section-player {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 3rem 4rem;
+    overflow-y: auto;
+}
+
+.miracles-header {
+    margin-bottom: 2rem;
+}
+
+.miracles-header h2 {
+    color: white;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.miracles-header p {
+    color: #999;
+    font-size: 1rem;
+}
+
+.miracles-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.miracle-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.miracle-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(5px);
+}
+
+.miracle-item img {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.miracle-item-info {
+    flex: 1;
+}
+
+.miracle-item-info h4 {
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+}
+
+.miracle-item-info p {
+    color: #999;
+    font-size: 0.85rem;
+    margin-bottom: 0.2rem;
+}
+
+.miracle-item-info .duration {
+    color: #666;
+    font-size: 0.8rem;
+}
+
+.play-miracle-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.miracle-item:hover .play-miracle-btn {
+    opacity: 1;
+}
+
+.play-miracle-btn:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+.play-miracle-btn:hover svg path {
+    fill: #000;
+}
+
+/* Scrollbar Styling */
+.miracles-section-player::-webkit-scrollbar {
+    width: 8px;
+}
+
+.miracles-section-player::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.miracles-section-player::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.miracles-section-player::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile Responsive */
+@media (max-width: 1024px) {
+    .player-split-layout {
+        grid-template-columns: 1fr;
+        overflow-y: auto;
+    }
+
+    .player-section {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        min-height: 100vh;
+    }
+
+    .miracles-section-player {
+        min-height: auto;
+    }
+
+    .album-art {
+        width: 260px;
+        height: 260px;
+    }
+
+    .song-info h3 {
+        font-size: 1.5rem;
+    }
+
+    .player-controls {
+        gap: 1.5rem;
+    }
+
+    .play-btn {
+        width: 56px;
+        height: 56px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .player-section,
+    .miracles-section-player {
+        padding: 2rem 1.5rem;
+    }
+
+    .player-close {
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .album-art {
+        width: 220px;
+        height: 220px;
+    }
+
+    .miracles-header h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Add cursor pointer to miracle cards */
+.miracle-card {
+    cursor: pointer;
+}
