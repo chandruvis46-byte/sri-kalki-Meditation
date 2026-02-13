@@ -17,7 +17,9 @@ export const DataProvider = ({ children }) => {
         collections: [],
         meditations: [],
         miracles: [],
-        episodes: []
+        episodes: [],
+        siteSettings: {},
+        banners: []
     })
     const [loading, setLoading] = useState(true)
     const [searchQuery, setSearchQuery] = useState('')
@@ -32,26 +34,38 @@ export const DataProvider = ({ children }) => {
                     { data: collections, error: colErr },
                     { data: meditations, error: medErr },
                     { data: miracles, error: mirErr },
-                    { data: episodes, error: epiErr }
+                    { data: episodes, error: epiErr },
+                    { data: settings, error: setErr },
+                    { data: banners, error: banErr }
                 ] = await Promise.all([
                     supabase.from('categories').select('*'),
                     supabase.from('collections').select('*'),
                     supabase.from('meditations').select('*'),
                     supabase.from('miracles').select('*'),
-                    supabase.from('episodes').select('*')
+                    supabase.from('episodes').select('*'),
+                    supabase.from('site_settings').select('*'),
+                    supabase.from('banners').select('*').order('sort_order', { ascending: true })
                 ])
 
-                if (catErr || colErr || medErr || mirErr || epiErr) {
-                    console.error('Fetch error:', { catErr, colErr, medErr, mirErr, epiErr })
-                    alert('Error connecting to Supabase tables. Please ensure you have run the provided SQL script to create the required tables.')
+                if (catErr || colErr || medErr || mirErr || epiErr || setErr || banErr) {
+                    console.error('Fetch error:', { catErr, colErr, medErr, mirErr, epiErr, setErr, banErr })
+                    // Only alert if critical data is missing, or handled gracefully
                 }
+
+                // Process settings into an object
+                const settingsObj = (settings || []).reduce((acc, curr) => {
+                    acc[curr.key] = curr.value
+                    return acc
+                }, {})
 
                 setData({
                     categories: categories || [],
                     collections: collections || [],
                     meditations: meditations || [],
                     miracles: miracles || [],
-                    episodes: episodes || []
+                    episodes: episodes || [],
+                    siteSettings: settingsObj || {},
+                    banners: banners || []
                 })
             } catch (error) {
                 console.error('Error fetching data:', error)
@@ -303,6 +317,72 @@ export const DataProvider = ({ children }) => {
         }))
     }
 
+    // Site Settings
+    const updateSiteSetting = async (key, value) => {
+        const { error } = await supabase
+            .from('site_settings')
+            .upsert({ key, value, updated_at: new Date() })
+            .select()
+
+        if (error) {
+            console.error('Error updating site setting:', error)
+            alert('Failed to update setting.')
+            return
+        }
+        setData(prev => ({
+            ...prev,
+            siteSettings: { ...prev.siteSettings, [key]: value }
+        }))
+    }
+
+    // Banners CRUD
+    const addBanner = async (banner) => {
+        const { data: newBanner, error } = await supabase
+            .from('banners')
+            .insert([banner])
+            .select()
+        if (error) {
+            console.error('Error adding banner:', error)
+            alert('Failed to add banner.')
+            return
+        }
+        if (newBanner) {
+            setData(prev => ({ ...prev, banners: [...prev.banners, newBanner[0]] }))
+        }
+    }
+
+    const updateBanner = async (id, updates) => {
+        const { error } = await supabase
+            .from('banners')
+            .update(updates)
+            .eq('id', id)
+        if (error) {
+            console.error('Error updating banner:', error)
+            alert('Failed to update banner.')
+            return
+        }
+        setData(prev => ({
+            ...prev,
+            banners: prev.banners.map(b => b.id === id ? { ...b, ...updates } : b)
+        }))
+    }
+
+    const deleteBanner = async (id) => {
+        const { error } = await supabase
+            .from('banners')
+            .delete()
+            .eq('id', id)
+        if (error) {
+            console.error('Error deleting banner:', error)
+            alert('Failed to delete banner.')
+            return
+        }
+        setData(prev => ({
+            ...prev,
+            banners: prev.banners.filter(b => b.id !== id)
+        }))
+    }
+
 
     const value = {
         data,
@@ -327,6 +407,12 @@ export const DataProvider = ({ children }) => {
         addMiracle,
         updateMiracle,
         deleteMiracle,
+        // Site Settings
+        updateSiteSetting,
+        // Banners
+        addBanner,
+        updateBanner,
+        deleteBanner,
         // Search
         searchQuery,
         setSearchQuery

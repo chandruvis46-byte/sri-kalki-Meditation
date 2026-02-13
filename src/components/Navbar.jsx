@@ -1,13 +1,13 @@
 import { useData } from '../context/DataContext'
 
 export default function Navbar() {
-    const { searchQuery, setSearchQuery } = useData()
+    const { data, searchQuery, setSearchQuery } = useData()
 
     return (
         <nav className="glass-nav">
             <div className="nav-container">
                 <div className="logo">
-                    <img src="./Logo /Sri kalki Logo.svg" alt="Sri Kalki Logo" />
+                    <img src={data.siteSettings?.site_logo || "./Logo /Sri kalki Logo.svg"} alt="Sri Kalki Logo" />
                 </div>
 
                 <div className="search-bar">

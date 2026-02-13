@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { LayoutDashboard, FolderOpen, Layers, MonitorPlay, Sparkles, LogOut, ExternalLink, Settings } from 'lucide-react'
+import { LayoutDashboard, FolderOpen, Layers, MonitorPlay, Sparkles, LogOut, ExternalLink, Settings, Image } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
 export default function AdminSidebar() {
@@ -22,6 +22,7 @@ export default function AdminSidebar() {
         { path: '/admin/collections', label: 'Collections', icon: Layers },
         { path: '/admin/meditations', label: 'Meditations', icon: MonitorPlay },
         { path: '/admin/miracles', label: 'Miracles', icon: Sparkles },
+        { path: '/admin/site-settings', label: 'Site Manager', icon: Image },
         { path: '/admin/profile', label: 'Profile', icon: Settings }
     ]
 

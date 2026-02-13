@@ -26,6 +26,7 @@ import CategoryManager from './admin/CategoryManager'
 import CollectionManager from './admin/CollectionManager'
 import MeditationManager from './admin/MeditationManager'
 import MiracleManager from './admin/MiracleManager'
+import SiteManager from './admin/SiteManager'
 
 function MainSite() {
     const { data, searchQuery } = useData()
@@ -106,6 +107,7 @@ function App() {
                                 <Route path="collections" element={<CollectionManager />} />
                                 <Route path="meditations" element={<MeditationManager />} />
                                 <Route path="miracles" element={<MiracleManager />} />
+                                <Route path="site-settings" element={<SiteManager />} />
                                 <Route path="profile" element={<Profile />} />
                             </Route>
                         </Route>
